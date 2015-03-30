@@ -1,5 +1,5 @@
 #
-# Copyright 2014 The Android Open-Source Project
+# Copyright 2013 The Android Open Source Project
 #
 # Licensed under the Apache License, Version 2.0 (the "License");
 # you may not use this file except in compliance with the License.
@@ -23,18 +23,23 @@
 # Inherit from the common Open Source product configuration
 $(call inherit-product, $(SRC_TARGET_DIR)/product/aosp_base_telephony.mk)
 
-PRODUCT_NAME := aosp_shamu
-PRODUCT_DEVICE := shamu
-PRODUCT_BRAND := Android
-PRODUCT_MODEL := AOSP on Shamu
-PRODUCT_MANUFACTURER := motorola
-PRODUCT_RESTRICT_VENDOR_FILES := false
+# inherit from the EOS vendor, if present
+$(call inherit-product-if-exists, vendor/lpop/configs/common_full_phone.mk)
+
+# Copy Bootanimation
+PRODUCT_COPY_FILES += \
+vendor/lpop/prebuilts/common/system/media/bootanimation.zip:system/media/bootanimation.zip
 
 $(call inherit-product, device/moto/shamu/device.mk)
 $(call inherit-product-if-exists, vendor/moto/shamu/device-vendor.mk)
 
-PRODUCT_NAME := aosp_shamu
+PRODUCT_BUILD_PROP_OVERRIDES +=
+PRODUCT_BUILD_PROP_OVERRIDES += PRODUCT_NAME=shamu BUILD_FINGERPRINT=google/shamu/shamu:5.1/LMY47D/1743759:user/release-keys PRIVATE_BUILD_DESC="shamu-user 5.1 LMY47D 1743759 release-keys"
 
-PRODUCT_PACKAGES += \
-    Launcher3
+PRODUCT_DEVICE := shamu
+PRODUCT_NAME := full_shamu
+PRODUCT_BRAND := google
+PRODUCT_MODEL := Nexus 6
+PRODUCT_MANUFACTURER := motorola
+PRODUCT_RESTRICT_VENDOR_FILES := false
 
