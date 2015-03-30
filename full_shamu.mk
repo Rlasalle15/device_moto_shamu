@@ -31,7 +31,7 @@ PRODUCT_COPY_FILES += \
 vendor/lpop/prebuilts/common/system/media/bootanimation.zip:system/media/bootanimation.zip
 
 $(call inherit-product, device/moto/shamu/device.mk)
-$(call inherit-product-if-exists, vendor/moto/shamu/device-vendor.mk)
+$(call inherit-product-if-exists, vendor/motorola/shamu/device-vendor.mk)
 
 PRODUCT_BUILD_PROP_OVERRIDES +=
 PRODUCT_BUILD_PROP_OVERRIDES += PRODUCT_NAME=shamu BUILD_FINGERPRINT=google/shamu/shamu:5.1/LMY47D/1743759:user/release-keys PRIVATE_BUILD_DESC="shamu-user 5.1 LMY47D 1743759 release-keys"
